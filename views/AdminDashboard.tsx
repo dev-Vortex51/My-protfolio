@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PortfolioData, Project, Experience, Skill, Message } from '../types';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -34,6 +33,7 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
 
   // --- REPOS MANAGEMENT ---
   const handleAddProject = () => {
+    // Fix: Added missing required properties 'likes' and 'comments' to match Project interface
     const newProj: Project = {
       id: Math.random().toString(36).substr(2, 9),
       title: "NEW_REPOSITORY",
@@ -43,7 +43,9 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
       featured: false,
       status: 'beta',
-      version: 'v0.0.1'
+      version: 'v0.0.1',
+      likes: 0,
+      comments: []
     };
     handleUpdateField('projects', [newProj, ...data.projects]);
     setEditingProject(newProj);
@@ -301,21 +303,21 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
                   type="text" 
                   value={editingProject.title} 
                   onChange={e => setEditingProject({...editingProject, title: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm"
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm"
                   placeholder="Title"
                 />
                 <input 
                   type="text" 
                   value={editingProject.version} 
                   onChange={e => setEditingProject({...editingProject, version: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm"
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm"
                   placeholder="Version"
                 />
               </div>
               <textarea 
                 value={editingProject.description} 
                 onChange={e => setEditingProject({...editingProject, description: e.target.value})}
-                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm resize-none"
+                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm resize-none"
                 rows={3}
                 placeholder="Description"
               />
@@ -395,14 +397,14 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
                   type="text" 
                   value={editingExperience.company} 
                   onChange={e => setEditingExperience({...editingExperience, company: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm"
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm"
                   placeholder="Company"
                 />
                 <input 
                   type="text" 
                   value={editingExperience.role} 
                   onChange={e => setEditingExperience({...editingExperience, role: e.target.value})}
-                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm"
+                  className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm"
                   placeholder="Role"
                 />
               </div>
@@ -410,13 +412,13 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
                 type="text" 
                 value={editingExperience.period} 
                 onChange={e => setEditingExperience({...editingExperience, period: e.target.value})}
-                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm"
+                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm"
                 placeholder="Period (e.g. 2022 - PRESENT)"
               />
               <textarea 
                 value={editingExperience.description} 
                 onChange={e => setEditingExperience({...editingExperience, description: e.target.value})}
-                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-white mono text-sm resize-none"
+                className="w-full bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white mono text-sm resize-none"
                 rows={3}
               />
               <div className="flex gap-4">

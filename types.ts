@@ -1,4 +1,11 @@
 
+export interface Comment {
+  id: string;
+  author: string;
+  text: string;
+  timestamp: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -11,6 +18,8 @@ export interface Project {
   version?: string;
   status: 'production' | 'beta' | 'archived';
   metrics?: { stars: number; forks: number; coverage: string };
+  likes: number;
+  comments: Comment[];
 }
 
 export interface Experience {

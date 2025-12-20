@@ -1,19 +1,58 @@
 
 import React, { useState } from 'react';
-import { PortfolioData } from '../types';
+import { PortfolioData, Project, Comment } from '../types';
 
 interface Props {
   data: PortfolioData;
+  onUpdate: (data: PortfolioData) => void;
 }
 
-const ProjectsPage: React.FC<Props> = ({ data }) => {
+const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
   const [filter, setFilter] = useState('all');
+  const [activeComments, setActiveComments] = useState<string | null>(null);
+  const [commentInputs, setCommentInputs] = useState<Record<string, string>>({});
   
   const tags = Array.from(new Set(data.projects.flatMap(p => p.tags)));
   
   const filteredProjects = filter === 'all' 
     ? data.projects 
     : data.projects.filter(p => p.tags.includes(filter));
+
+  const handleLike = (projectId: string) => {
+    const updatedProjects = data.projects.map(p => {
+      if (p.id === projectId) {
+        return { ...p, likes: (p.likes || 0) + 1 };
+      }
+      return p;
+    });
+    onUpdate({ ...data, projects: updatedProjects });
+  };
+
+  const handleAddComment = (projectId: string) => {
+    const text = commentInputs[projectId];
+    if (!text?.trim()) return;
+
+    const newComment: Comment = {
+      id: Math.random().toString(36).substr(2, 9),
+      author: "Guest User",
+      text: text.trim(),
+      timestamp: new Date().toISOString(),
+    };
+
+    const updatedProjects = data.projects.map(p => {
+      if (p.id === projectId) {
+        return { ...p, comments: [...(p.comments || []), newComment] };
+      }
+      return p;
+    });
+
+    onUpdate({ ...data, projects: updatedProjects });
+    setCommentInputs({ ...commentInputs, [projectId]: '' });
+  };
+
+  const toggleComments = (projectId: string) => {
+    setActiveComments(activeComments === projectId ? null : projectId);
+  };
 
   return (
     <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-32 space-y-20">
@@ -49,7 +88,7 @@ const ProjectsPage: React.FC<Props> = ({ data }) => {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
         {filteredProjects.map((project, idx) => (
           <div 
             key={project.id} 
@@ -84,17 +123,67 @@ const ProjectsPage: React.FC<Props> = ({ data }) => {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex items-center justify-between">
-              <div className="flex gap-4 text-zinc-400 dark:text-zinc-600 text-[10px] font-mono">
-                <span className="flex items-center gap-1"><i className="fa-solid fa-star"></i> {project.metrics?.stars || 0}</span>
-                <span className="flex items-center gap-1"><i className="fa-solid fa-code-fork"></i> {project.metrics?.forks || 0}</span>
+            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <div className="flex gap-4">
+                  <button 
+                    onClick={() => handleLike(project.id)}
+                    className="flex items-center gap-1.5 text-[10px] font-mono text-zinc-400 hover:text-rose-500 transition-colors"
+                  >
+                    <i className="fa-solid fa-heart"></i> {project.likes || 0}
+                  </button>
+                  <button 
+                    onClick={() => toggleComments(project.id)}
+                    className={`flex items-center gap-1.5 text-[10px] font-mono transition-colors ${activeComments === project.id ? 'text-indigo-500' : 'text-zinc-400 hover:text-indigo-500'}`}
+                  >
+                    <i className="fa-solid fa-comment"></i> {project.comments?.length || 0}
+                  </button>
+                </div>
+                <a 
+                  href={project.link} 
+                  className="text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-widest flex items-center gap-2 group/link"
+                >
+                  Launch <i className="fa-solid fa-arrow-right -rotate-45 group-hover/link:rotate-0 transition-transform"></i>
+                </a>
               </div>
-              <a 
-                href={project.link} 
-                className="text-[10px] font-bold text-zinc-900 dark:text-white uppercase tracking-widest flex items-center gap-2 group/link"
-              >
-                Launch <i className="fa-solid fa-arrow-right -rotate-45 group-hover/link:rotate-0 transition-transform"></i>
-              </a>
+
+              {/* Comments Section */}
+              {activeComments === project.id && (
+                <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-900 space-y-4 animate-in fade-in duration-300">
+                  <div className="max-h-40 overflow-y-auto space-y-3 pr-2 scrollbar-thin">
+                    {project.comments?.length === 0 ? (
+                      <p className="text-[9px] text-zinc-500 font-mono italic">No transmissions yet. Start the conversation.</p>
+                    ) : (
+                      project.comments.map(comment => (
+                        <div key={comment.id} className="space-y-1">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[8px] font-bold uppercase tracking-widest text-indigo-500">{comment.author}</span>
+                            <span className="text-[7px] font-mono text-zinc-500">{new Date(comment.timestamp).toLocaleDateString()}</span>
+                          </div>
+                          <p className="text-[10px] text-zinc-600 dark:text-zinc-400 font-medium leading-tight">{comment.text}</p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                  
+                  <div className="flex gap-2">
+                    <input 
+                      type="text"
+                      placeholder="Post signal..."
+                      value={commentInputs[project.id] || ''}
+                      onChange={(e) => setCommentInputs({ ...commentInputs, [project.id]: e.target.value })}
+                      onKeyDown={(e) => e.key === 'Enter' && handleAddComment(project.id)}
+                      className="flex-grow bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-2 py-1.5 text-[10px] text-zinc-900 dark:text-white focus:border-indigo-500 outline-none transition-all"
+                    />
+                    <button 
+                      onClick={() => handleAddComment(project.id)}
+                      className="bg-indigo-600 text-white px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all"
+                    >
+                      <i className="fa-solid fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}

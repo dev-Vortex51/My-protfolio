@@ -47,7 +47,11 @@ export const INITIAL_DATA: PortfolioData = {
       featured: true,
       version: "v4.2.0",
       status: "production",
-      metrics: { stars: 1200, forks: 84, coverage: "98%" }
+      metrics: { stars: 1200, forks: 84, coverage: "98%" },
+      likes: 42,
+      comments: [
+        { id: "c1", author: "Guest User", text: "This is exactly what our infra team needed. Great work!", timestamp: new Date().toISOString() }
+      ]
     },
     {
       id: "2",
@@ -60,7 +64,9 @@ export const INITIAL_DATA: PortfolioData = {
       featured: true,
       version: "v1.0.5-beta",
       status: "beta",
-      metrics: { stars: 450, forks: 12, coverage: "92%" }
+      metrics: { stars: 450, forks: 12, coverage: "92%" },
+      likes: 18,
+      comments: []
     }
   ],
   experiences: [

@@ -25,6 +25,10 @@ const App: React.FC = () => {
   });
 
   useEffect(() => {
+    localStorage.setItem('portfolio_data', JSON.stringify(data));
+  }, [data]);
+
+  useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
@@ -99,7 +103,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<PublicPortfolio data={data} />} />
-            <Route path="/projects" element={<ProjectsPage data={data} />} />
+            <Route path="/projects" element={<ProjectsPage data={data} onUpdate={setData} />} />
             <Route path="/contact" element={<ContactPage data={data} />} />
             <Route path="/login" element={isAuthenticated ? <Navigate to="/admin" /> : <Login onLogin={handleLogin} />} />
             <Route 
