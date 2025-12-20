@@ -18,6 +18,13 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
     ? data.projects 
     : data.projects.filter(p => p.tags.includes(filter));
 
+  const calculateReadTime = (text: string) => {
+    const wordsPerMinute = 200;
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes;
+  };
+
   const handleLike = (projectId: string) => {
     const updatedProjects = data.projects.map(p => {
       if (p.id === projectId) {
@@ -100,10 +107,14 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
                 <div className="w-10 h-10 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded flex items-center justify-center text-indigo-500 group-hover:scale-110 transition-transform shadow-sm">
                   <i className="fa-solid fa-cube text-sm"></i>
                 </div>
-                <div className="text-right">
+                <div className="flex flex-col items-end gap-1 text-right">
                   <span className={`text-[9px] font-bold px-2 py-0.5 rounded border ${project.status === 'production' ? 'border-emerald-500/20 text-emerald-600 dark:text-emerald-500' : 'border-amber-500/20 text-amber-600 dark:text-amber-500'} uppercase tracking-tighter`}>
                     {project.status}
                   </span>
+                  <div className="flex items-center gap-1 text-[8px] font-mono text-zinc-400 uppercase tracking-widest">
+                    <i className="fa-regular fa-clock"></i>
+                    {calculateReadTime(project.description)} min read
+                  </div>
                 </div>
               </div>
 

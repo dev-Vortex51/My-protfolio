@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { PortfolioData, Project, Experience, Skill, Message } from '../types';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -26,6 +27,13 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
     { name: 'Sat', uv: 2390 },
     { name: 'Sun', uv: 3490 },
   ];
+
+  const calculateReadTime = (text: string) => {
+    const wordsPerMinute = 200;
+    const words = text.trim().split(/\s+/).length;
+    const minutes = Math.ceil(words / wordsPerMinute);
+    return minutes;
+  };
 
   const handleUpdateField = (field: keyof PortfolioData, value: any) => {
     onUpdate({ ...data, [field]: value });
@@ -354,7 +362,14 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate }) => {
                   </div>
                   <div className="space-y-1">
                     <h4 className="text-zinc-900 dark:text-white font-bold uppercase tracking-tight">{project.title}</h4>
-                    <p className="text-zinc-500 text-xs font-mono">{project.version} // {project.status}</p>
+                    <div className="flex items-center gap-3">
+                      <p className="text-zinc-500 text-xs font-mono">{project.version} // {project.status}</p>
+                      <div className="h-3 w-[1px] bg-zinc-800"></div>
+                      <div className="flex items-center gap-1 text-[10px] font-mono text-zinc-600 uppercase tracking-widest">
+                        <i className="fa-regular fa-clock"></i>
+                        {calculateReadTime(project.description)} min read
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
