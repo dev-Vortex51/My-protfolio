@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", "sans-serif";
+  --font-mono: "JetBrains Mono", "monospace";
+}
+
+:root {
+  --bg: #ffffff;
+  --text: #09090b;
+  --accent: #6366f1;
+  --border: #e4e4e7;
+}
+
+.dark {
+  --bg: #09090b;
+  --text: #fafafa;
+  --border: #18181b;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Grid System Background */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Terminal-style input cursor */
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background-color: var(--accent);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Performance-focused animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s cubic-bezier(0.2, 0, 0, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Git contribution pixel style */
+.pixel {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #f4f4f5;
+}
+.dark .pixel {
+  background-color: #18181b;
+}
+.pixel-1 {
+  background-color: #c7d2fe;
+}
+.dark .pixel-1 {
+  background-color: #312e81;
+}
+.pixel-2 {
+  background-color: #818cf8;
+}
+.dark .pixel-2 {
+  background-color: #4338ca;
+}
+.pixel-3 {
+  background-color: #6366f1;
+}
+.dark .pixel-3 {
+  background-color: #6366f1;
+}
