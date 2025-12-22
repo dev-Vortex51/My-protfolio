@@ -6,6 +6,7 @@ import ContactPage from "../pages/ContactPage";
 import AdminDashboard from "../pages/AdminDashboard";
 import Login from "../pages/Login";
 import { PortfolioData } from "../lib/types";
+import ResumePage from "@/pages/ResumePage";
 
 interface AppRoutesProps {
   data: PortfolioData;
@@ -15,6 +16,7 @@ interface AppRoutesProps {
     email: string;
     password: string;
   }) => Promise<boolean>;
+  onLogout: () => void;
 }
 
 const AppRoutes: React.FC<AppRoutesProps> = ({
@@ -22,6 +24,7 @@ const AppRoutes: React.FC<AppRoutesProps> = ({
   onUpdateData,
   isAuthenticated,
   onLogin,
+  onLogout,
 }) => {
   return (
     <Routes>
@@ -31,11 +34,12 @@ const AppRoutes: React.FC<AppRoutesProps> = ({
         element={<ProjectsPage data={data} onUpdate={onUpdateData} />}
       />
       <Route path="/contact" element={<ContactPage data={data} />} />
+      <Route path="/resume" element={<ResumePage data={data} />} />
       <Route
         path="/login"
         element={
           isAuthenticated ? (
-            <Navigate to="/admin" />
+            <Navigate to="/admin" replace />
           ) : (
             <Login onLogin={onLogin} />
           )
@@ -45,9 +49,13 @@ const AppRoutes: React.FC<AppRoutesProps> = ({
         path="/admin/*"
         element={
           isAuthenticated ? (
-            <AdminDashboard data={data} onUpdate={onUpdateData} />
+            <AdminDashboard
+              data={data}
+              onUpdate={onUpdateData}
+              onLogout={onLogout}
+            />
           ) : (
-            <Navigate to="/login" />
+            <Navigate to="/login" replace />
           )
         }
       />

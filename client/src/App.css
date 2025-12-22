@@ -81,6 +81,16 @@ body {
   transform: translateY(0);
 }
 
+/* Ensure reveal elements never show default focus outline */
+.reveal,
+.reveal:focus,
+.reveal:focus-visible,
+.reveal *:focus,
+.reveal *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -96,6 +106,21 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Remove default focus outlines (per request) */
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible,
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 /* Git contribution pixel style */

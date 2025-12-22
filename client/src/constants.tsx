@@ -4,8 +4,8 @@ export const INITIAL_DATA: PortfolioData = {
   name: "VORTEX",
   role: "Lead Software Architect",
   bio: "Engineering high-performance distributed systems and design-driven interfaces. Focused on scalability, accessibility, and pixel-perfect implementation.",
-  location: "San Francisco, CA",
-  email: "engineering@vortex.io",
+  location: "Kwara, Nigeria",
+  email: "qudusbello51@gmail.com",
   stats: {
     uptime: "99.99%",
     commits: 2481,
@@ -122,6 +122,26 @@ export const INITIAL_DATA: PortfolioData = {
       level: 75,
       category: "other",
       pid: "3310",
+    },
+  ],
+  testimonials: [
+    {
+      id: "t1",
+      name: "Marcus Thorne",
+      role: "CTO",
+      company: "Stripe",
+      content:
+        "Vortex delivered architectural patterns that redefined our throughput capabilities. A rare blend of deep technical insight and product vision.",
+      verified: true,
+    },
+    {
+      id: "t2",
+      name: "Elena Rodriguez",
+      role: "Principal Engineer",
+      company: "Linear",
+      content:
+        "The level of precision in the frontend implementation surpassed our highest benchmarks. Total mastery over the modern web stack.",
+      verified: true,
     },
   ],
 };

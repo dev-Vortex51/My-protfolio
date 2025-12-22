@@ -41,26 +41,109 @@ async function seed() {
       );
     }
 
-    // Seed portfolio info
-    const existingPortfolio = await Portfolio.findOne();
-    if (!existingPortfolio) {
-      await Portfolio.create({
-        name: "VORTEX",
-        role: "Lead Software Architect",
-        bio: "Engineering high-performance distributed systems and design-driven interfaces. Focused on scalability, accessibility, and pixel-perfect implementation.",
-        location: "San Francisco, CA",
-        email: "engineering@vortex.io",
-        stats: {
-          uptime: "99.99%",
-          commits: 2481,
-          visitors: 12402,
-          lighthouse: 100,
+    // Seed portfolio info (upsert to ensure new fields exist)
+    const defaultPortfolio = {
+      name: "VORTEX",
+      role: "Lead Software Architect",
+      bio: "Engineering high-performance distributed systems and design-driven interfaces. Focused on scalability, accessibility, and pixel-perfect implementation.",
+      headline: "ENGINEERING FOR THE INFINITE SCALE",
+      tagline:
+        "Architecting robust digital infrastructure with a focus on low-latency, scalability, and human-centric design.",
+      location: "San Francisco, CA",
+      email: "engineering@vortex.io",
+      stats: {
+        uptime: "99.99%",
+        commits: 2481,
+        visitors: 12402,
+        lighthouse: 100,
+      },
+      experiences: [
+        {
+          id: "e1",
+          company: "Linear",
+          role: "Senior Frontend Engineer",
+          period: "2022 - PRESENT",
+          description:
+            "Leading the core interactions team, focusing on high-performance desktop-grade web experiences.",
         },
-      });
-      console.log("✅ Portfolio info created");
-    } else {
-      console.log("⚠️  Portfolio info already exists");
-    }
+        {
+          id: "e2",
+          company: "Stripe",
+          role: "Software Engineer",
+          period: "2020 - 2022",
+          description:
+            "Architected scalable payment dashboards processing millions of requests per second.",
+        },
+      ],
+      skills: [
+        {
+          id: "s1",
+          name: "REACT CORE",
+          level: 98,
+          category: "frontend",
+          pid: "8821",
+        },
+        {
+          id: "s2",
+          name: "RUST SYSTEMS",
+          level: 85,
+          category: "backend",
+          pid: "4112",
+        },
+        {
+          id: "s3",
+          name: "KUBERNETES",
+          level: 90,
+          category: "devops",
+          pid: "1092",
+        },
+      ],
+      languages: [
+        {
+          id: "l1",
+          name: "English",
+          proficiency: "Native",
+        },
+        {
+          id: "l2",
+          name: "Spanish",
+          proficiency: "Fluent",
+        },
+        {
+          id: "l3",
+          name: "Japanese",
+          proficiency: "Limited",
+        },
+      ],
+      socialLinks: {
+        github: "https://github.com/vortex",
+        linkedin: "https://linkedin.com/in/vortex",
+        twitter: "https://twitter.com/vortex_dev",
+        website: "https://vortex.io",
+      },
+      testimonials: [
+        {
+          id: "t1",
+          name: "Sarah Jenkins",
+          role: "Director of Engineering",
+          company: "Tech Inc",
+          content:
+            "Vortex delivered production-grade systems with impeccable UX and reliability.",
+          verified: true,
+        },
+      ],
+    };
+
+    const portfolio = await Portfolio.findOneAndUpdate(
+      {},
+      { $set: defaultPortfolio },
+      { new: true, upsert: true }
+    );
+    console.log(
+      portfolio
+        ? "✅ Portfolio info created/updated"
+        : "⚠️  Portfolio upsert skipped"
+    );
 
     // Seed sample projects
     const projectCount = await Project.countDocuments();

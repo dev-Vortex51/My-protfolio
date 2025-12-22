@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import NavigationLinks from "./NavigationLinks";
 
 interface HeaderProps {
@@ -19,10 +19,40 @@ const Header: React.FC<HeaderProps> = ({
   isMobileMenuOpen,
   onToggleMobileMenu,
 }) => {
+  const navigate = useNavigate();
+  const [clickCount, setClickCount] = useState(0);
+  const clickTimer = useRef<NodeJS.Timeout | null>(null);
+
+  // Hidden triple-click on logo to access admin/login
+  const handleLogoClick = (e: React.MouseEvent) => {
+    const newCount = clickCount + 1;
+    setClickCount(newCount);
+
+    if (clickTimer.current) {
+      clearTimeout(clickTimer.current);
+    }
+
+    if (newCount >= 3) {
+      // Triple click detected - navigate to admin or login
+      e.preventDefault();
+      navigate(isAuthenticated ? "/admin" : "/login");
+      setClickCount(0);
+    } else {
+      // Reset counter after 1 second
+      clickTimer.current = setTimeout(() => {
+        setClickCount(0);
+      }, 1000);
+    }
+  };
+
   return (
     <header className="fixed top-4 left-0 right-0 z-100 px-4 md:px-6">
       <nav className="max-w-350 mx-auto flex items-center justify-between h-14 bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 rounded-full px-4 md:px-6 shadow-sm dark:shadow-none">
-        <Link to="/" className="flex items-center gap-2">
+        <Link
+          to="/"
+          className="flex items-center gap-2 focus:outline-none focus:ring-0"
+          onClick={handleLogoClick}
+        >
           <span className="font-black text-zinc-900 dark:text-white tracking-tighter uppercase">
             Vortex<span className="text-indigo-600">.</span>
           </span>
@@ -38,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 md:gap-4">
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-indigo-500 transition-all cursor-pointer"
+              className="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-indigo-500 transition-all cursor-pointer focus:outline-none focus:ring-0"
               aria-label="Toggle Theme"
             >
               <i
@@ -75,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({
             {/* Mobile Menu Toggle */}
             <button
               onClick={onToggleMobileMenu}
-              className="md:hidden w-8 h-8 flex items-center justify-center text-zinc-500 cursor-pointer "
+              className="md:hidden w-8 h-8 flex items-center justify-center text-zinc-500 cursor-pointer focus:outline-none focus:ring-0"
             >
               <i
                 className={`fa-solid ${

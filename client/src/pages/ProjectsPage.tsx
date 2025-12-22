@@ -65,10 +65,10 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-6 lg:px-12 pt-32 pb-32 space-y-20">
+    <div className="max-w-350 mx-auto px-6 lg:px-12 pt-32 pb-32 space-y-20">
       <div className="space-y-6">
         <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-500 font-mono text-[10px] tracking-widest uppercase">
-          <span className="w-8 h-[1px] bg-indigo-500"></span>
+          <span className="w-8 h-px bg-indigo-500"></span>
           Index / Projects / Explorer
         </div>
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-zinc-900 dark:text-white">
@@ -109,14 +109,14 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProjects.map((project, idx) => (
           <div
             key={project.id}
-            className="group bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 rounded p-6 flex flex-col justify-between hover:border-indigo-500/50 transition-all duration-300 reveal shadow-sm dark:shadow-none"
+            className="group bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 rounded p-6 flex flex-col h-full hover:border-indigo-500/50 transition-all duration-300 reveal shadow-sm dark:shadow-none"
             style={{ transitionDelay: `${idx * 0.05}s` }}
           >
-            <div className="space-y-6">
+            <div className="space-y-6 flex-grow">
               <div className="flex justify-between items-start">
                 <div className="w-10 h-10 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded flex items-center justify-center text-indigo-500 group-hover:scale-110 transition-transform shadow-sm">
                   <i className="fa-solid fa-cube text-sm"></i>
@@ -159,7 +159,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex flex-col gap-4">
+            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex flex-col gap-4 flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex gap-4">
                   <button
@@ -230,7 +230,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
                       onKeyDown={(e) =>
                         e.key === "Enter" && handleAddComment(project.id)
                       }
-                      className="flex-grow bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-2 py-1.5 text-[10px] text-zinc-900 dark:text-white focus:border-indigo-500 outline-none transition-all"
+                      className="grow bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-2 py-1.5 text-[10px] text-zinc-900 dark:text-white focus:border-indigo-500 outline-none transition-all"
                     />
                     <button
                       onClick={() => handleAddComment(project.id)}

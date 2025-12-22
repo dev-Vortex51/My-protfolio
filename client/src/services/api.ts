@@ -1,4 +1,12 @@
-import type { Project, Message } from "../lib/types";
+import type {
+  Project,
+  Message,
+  Experience,
+  Skill,
+  Testimonial,
+  Language,
+  SocialLinks,
+} from "../lib/types";
 
 export const API_BASE_URL =
   import.meta.env.VITE_API_URL ?? "http://localhost:5000/api";
@@ -20,6 +28,8 @@ export interface PortfolioInfo {
   name: string;
   role: string;
   bio: string;
+  headline?: string;
+  tagline?: string;
   location: string;
   email: string;
   stats: {
@@ -28,6 +38,11 @@ export interface PortfolioInfo {
     visitors: number;
     lighthouse: number;
   };
+  experiences: Experience[];
+  skills: Skill[];
+  languages: Language[];
+  socialLinks: SocialLinks;
+  testimonials: Testimonial[];
 }
 
 // Helper to get auth headers
@@ -223,6 +238,19 @@ export async function markMessageRead(id: string): Promise<Message> {
 
   if (!res.ok) {
     throw new Error("Failed to mark message as read");
+  }
+
+  return res.json();
+}
+
+export async function markAllMessagesRead(): Promise<Message[]> {
+  const res = await fetch(`${API_BASE_URL}/contact/mark-all-read`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to mark all messages as read");
   }
 
   return res.json();

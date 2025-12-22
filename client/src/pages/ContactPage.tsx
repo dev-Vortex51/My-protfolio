@@ -48,14 +48,14 @@ const ContactPage: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-12 pt-24 md:pt-32 pb-32 grid lg:grid-cols-[1fr_400px] gap-12 md:gap-20">
+    <div className="max-w-350 mx-auto px-4 md:px-6 lg:px-12 pt-24 md:pt-32 pb-32 grid lg:grid-cols-[1fr_400px] gap-12 md:gap-20">
       <div className="space-y-8 md:space-y-12">
         <div className="space-y-6">
           <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-500 font-mono text-[10px] tracking-widest uppercase">
-            <span className="w-8 h-[1px] bg-indigo-500"></span>
+            <span className="w-8 h-px bg-indigo-500"></span>
             Establish Secure Communication
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-zinc-900 dark:text-white leading-[1]">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-zinc-900 dark:text-white leading-none">
             GET IN{" "}
             <span className="text-zinc-300 dark:text-zinc-700">TOUCH</span>
             <span className="text-indigo-500">.</span>
@@ -153,7 +153,13 @@ const ContactPage: React.FC<Props> = ({ data }) => {
               <select
                 value={formData.priority}
                 onChange={(e) =>
-                  setFormData({ ...formData, priority: e.target.value })
+                  setFormData({
+                    ...formData,
+                    priority: e.target.value as "Normal" as
+                      | "Low"
+                      | "Normal"
+                      | "Urgent",
+                  })
                 }
                 className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors appearance-none"
               >

@@ -20,3 +20,9 @@ export async function markRead(req: Request, res: Response) {
   if (!msg) return res.status(404).json({ error: "Not found" });
   res.json(msg.toJSON());
 }
+
+export async function markAllRead(_req: Request, res: Response) {
+  await ContactMessage.updateMany({ read: false }, { read: true });
+  const messages = await ContactMessage.find().sort({ timestamp: -1 });
+  res.json(messages.map((m) => m.toJSON()));
+}
