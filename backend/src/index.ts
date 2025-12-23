@@ -24,6 +24,11 @@ app.use(morgan("tiny"));
 app.use(cors({ origin: config.CORS_ORIGIN, credentials: true }));
 applySecurityMiddleware(app);
 
+// Root route (optional convenience)
+app.get("/", (_req, res) => {
+  res.status(200).send("Portfolio API is running. Try /api/health");
+});
+
 // Health check
 app.get("/api/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
