@@ -5,7 +5,7 @@ import { applySecurityMiddleware } from "./middleware/security.js";
 import { requestId } from "./middleware/requestId.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import morgan from "morgan";
-import cors from "cors";
+import cors, { type CorsOptions } from "cors";
 import compression from "compression";
 import { router as authRouter } from "./routes/authRoutes.js";
 import { router as projectRouter } from "./routes/projectRoutes.js";
@@ -21,7 +21,16 @@ app.use(compression());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(morgan("tiny"));
-app.use(cors({ origin: config.CORS_ORIGIN, credentials: true }));
+
+const corsOptions: CorsOptions = {
+  origin: config.CORS_ORIGIN,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 applySecurityMiddleware(app);
 
 // Root route (optional convenience)
