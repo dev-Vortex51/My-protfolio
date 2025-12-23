@@ -102,9 +102,20 @@ const AppContent: React.FC = () => {
 
   useEffect(() => {
     const root = window.document.documentElement;
+
+    // Enable transitions while changing theme
+    root.classList.add("theme-transitioning");
+
     root.classList.remove("light", "dark");
     root.classList.add(theme);
     localStorage.setItem("theme", theme);
+
+    // Disable transitions after change completes
+    const timer = setTimeout(() => {
+      root.classList.remove("theme-transitioning");
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [theme]);
 
   // Close mobile menu on route change

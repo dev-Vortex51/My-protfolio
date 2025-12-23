@@ -11,6 +11,11 @@
   --text: #09090b;
   --accent: #6366f1;
   --border: #e4e4e7;
+  --theme-transition: 0ms;
+}
+
+:root.theme-transitioning {
+  --theme-transition: 100ms;
 }
 
 .dark {
@@ -19,27 +24,10 @@
   --border: #18181b;
 }
 
-/* Smooth theme transitions - applied globally */
-*,
-*::before,
-*::after {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-duration: 100ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Preserve other transitions for interactive elements */
-button,
-input,
-textarea,
-select,
-a,
-[role="button"],
-[class*="hover:"],
-[class*="focus:"] {
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, transform, box-shadow;
-  transition-duration: 100ms;
+/* Apply smooth transitions only to color-related properties when theme changes */
+* {
+  transition: background-color, border-color, color, fill, stroke;
+  transition-duration: var(--theme-transition);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
