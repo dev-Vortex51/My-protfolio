@@ -86,7 +86,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
       <div className="flex flex-wrap gap-3 border-b border-zinc-200 dark:border-zinc-900 pb-8">
         <button
           onClick={() => setFilter("all")}
-          className={`px-4 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all ${
+          className={`px-4 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest ${
             filter === "all"
               ? "bg-indigo-600 text-white"
               : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
@@ -98,7 +98,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
           <button
             key={tag}
             onClick={() => setFilter(tag)}
-            className={`px-4 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest transition-all ${
+            className={`px-4 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest ${
               filter === tag
                 ? "bg-indigo-600 text-white"
                 : "bg-zinc-100 dark:bg-zinc-900 text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
@@ -113,7 +113,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
         {filteredProjects.map((project, idx) => (
           <div
             key={project.id}
-            className="group bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 rounded p-6 flex flex-col h-full hover:border-indigo-500/50 transition-all duration-300 reveal shadow-sm dark:shadow-none"
+            className="group bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 rounded p-6 flex flex-col h-full hover:border-indigo-500/50 reveal shadow-sm dark:shadow-none"
             style={{ transitionDelay: `${idx * 0.05}s` }}
           >
             <div className="space-y-6 flex-grow">
@@ -191,7 +191,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
 
               {/* Comments Section */}
               {activeComments === project.id && (
-                <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-900 space-y-4 animate-in fade-in duration-300">
+                <div className="mt-4 pt-4 border-t border-zinc-100 dark:border-zinc-900 space-y-4 animate-in fade-in">
                   <div className="max-h-40 overflow-y-auto space-y-3 pr-2 scrollbar-thin">
                     {project.comments?.length === 0 ? (
                       <p className="text-[9px] text-zinc-500 font-mono italic">
@@ -230,11 +230,11 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
                       onKeyDown={(e) =>
                         e.key === "Enter" && handleAddComment(project.id)
                       }
-                      className="grow bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-2 py-1.5 text-[10px] text-zinc-900 dark:text-white focus:border-indigo-500 outline-none transition-all"
+                      className="grow bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-2 py-1.5 text-[10px] text-zinc-900 dark:text-white focus:border-indigo-500 outline-none"
                     />
                     <button
                       onClick={() => handleAddComment(project.id)}
-                      className="bg-indigo-600 text-white px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700 transition-all"
+                      className="bg-indigo-600 text-white px-3 py-1.5 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700"
                     >
                       <i className="fa-solid fa-paper-plane"></i>
                     </button>

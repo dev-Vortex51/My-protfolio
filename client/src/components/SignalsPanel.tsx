@@ -19,7 +19,7 @@ const SignalsPanel: React.FC<Props> = ({
   const unreadCount = messages.filter((m) => !m.read).length;
 
   return (
-    <div className="grid lg:grid-cols-[1fr_400px] gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="grid lg:grid-cols-[1fr_400px] gap-8 animate-in fade-in slide-in-from-bottom-4">
       <div className="space-y-4">
         <div className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-900 pb-4">
           <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-widest">
@@ -49,7 +49,7 @@ const SignalsPanel: React.FC<Props> = ({
               <div
                 key={msg.id}
                 onClick={() => onReadMessage(msg.id)}
-                className={`bg-zinc-50 dark:bg-[#0c0c0e] border rounded-lg p-4 cursor-pointer transition-all ${
+                className={`bg-zinc-50 dark:bg-[#0c0c0e] border rounded-lg p-4 cursor-pointer ${
                   selectedMessage?.id === msg.id
                     ? "border-indigo-500/50 bg-indigo-500/5"
                     : "border-zinc-200 dark:border-zinc-800"

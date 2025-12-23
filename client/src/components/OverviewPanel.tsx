@@ -22,7 +22,7 @@ const visitorData = [
 
 const OverviewPanel: React.FC<Props> = ({ stats }) => {
   return (
-    <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-6 md:space-y-8 animate-in fade-in slide-in-from-bottom-4">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {[
           { label: "HEALTH", val: "100%", color: "text-emerald-600" },

@@ -60,13 +60,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
         <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
           <Link
             to="/contact"
-            className="px-6 md:px-8 py-3 md:py-4 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:hover:text-white transition-all shadow-xl shadow-indigo-500/10 text-center"
+            className="px-6 md:px-8 py-3 md:py-4 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:hover:text-white shadow-xl shadow-indigo-500/10 text-center"
           >
             Initiate Project
           </Link>
           <Link
             to="/projects"
-            className="px-6 md:px-8 py-3 md:py-4 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-[10px] md:text-xs font-black uppercase tracking-widest hover:border-zinc-900 dark:hover:border-white transition-all text-center"
+            className="px-6 md:px-8 py-3 md:py-4 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white text-[10px] md:text-xs font-black uppercase tracking-widest hover:border-zinc-900 dark:hover:border-white text-center"
           >
             Browse Index
           </Link>

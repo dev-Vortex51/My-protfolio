@@ -26,7 +26,7 @@ const ProjectsPreview: React.FC<ProjectsPreviewProps> = ({ data }) => {
           .map((project) => (
             <div
               key={project.id}
-              className="group bg-white dark:bg-[#09090b] border border-zinc-200 dark:border-zinc-800 rounded-md p-4 sm:p-6 hover:border-indigo-500/50 transition-all duration-300 reveal shadow-sm dark:shadow-none min-w-0"
+              className="group bg-white dark:bg-[#09090b] border border-zinc-200 dark:border-zinc-800 rounded-md p-4 sm:p-6 hover:border-indigo-500/50 reveal shadow-sm dark:shadow-none min-w-0"
             >
               <div className="flex justify-between items-start mb-4 sm:mb-6 gap-2 min-w-0">
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0 overflow-hidden">

@@ -160,7 +160,7 @@ const AppContent: React.FC = () => {
   return (
     <>
       {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <div className="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-50 transition-colors duration-300">
+      <div className="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white bg-white dark:bg-[#09090b] text-zinc-900 dark:text-zinc-50">
         <Header
           theme={theme}
           toggleTheme={toggleTheme}

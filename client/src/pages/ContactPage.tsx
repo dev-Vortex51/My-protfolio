@@ -77,7 +77,7 @@ const ContactPage: React.FC<Props> = ({ data }) => {
           className="space-y-6 md:space-y-8 bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 p-6 md:p-12 rounded-lg relative overflow-hidden shadow-sm dark:shadow-none"
         >
           {status === "sent" && (
-            <div className="absolute inset-0 bg-white/95 dark:bg-black/90 backdrop-blur-md z-10 flex flex-col items-center justify-center text-center p-6 space-y-4 animate-in fade-in duration-500">
+            <div className="absolute inset-0 bg-white/95 dark:bg-black/90 backdrop-blur-md z-10 flex flex-col items-center justify-center text-center p-6 space-y-4 animate-in fade-in">
               <div className="w-16 h-16 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-500">
                 <i className="fa-solid fa-check text-2xl"></i>
               </div>
@@ -110,7 +110,7 @@ const ContactPage: React.FC<Props> = ({ data }) => {
                   setFormData({ ...formData, name: e.target.value })
                 }
                 placeholder="Ex. John Doe"
-                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors"
+                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none"
               />
             </div>
             <div className="space-y-2">
@@ -125,7 +125,7 @@ const ContactPage: React.FC<Props> = ({ data }) => {
                   setFormData({ ...formData, email: e.target.value })
                 }
                 placeholder="Ex. mail@host.com"
-                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors"
+                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none"
               />
             </div>
           </div>
@@ -143,7 +143,7 @@ const ContactPage: React.FC<Props> = ({ data }) => {
                   setFormData({ ...formData, subject: e.target.value })
                 }
                 placeholder="Project Proposal"
-                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors"
+                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none"
               />
             </div>
             <div className="space-y-2">
@@ -161,7 +161,7 @@ const ContactPage: React.FC<Props> = ({ data }) => {
                       | "Urgent",
                   })
                 }
-                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors appearance-none"
+                className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none appearance-none"
               >
                 <option>Low</option>
                 <option>Normal</option>
@@ -182,13 +182,13 @@ const ContactPage: React.FC<Props> = ({ data }) => {
                 setFormData({ ...formData, message: e.target.value })
               }
               placeholder="Detailed details..."
-              className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none transition-colors resize-none"
+              className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-3 text-zinc-900 dark:text-white mono text-sm focus:border-indigo-500 outline-none resize-none"
             />
           </div>
 
           <button
             disabled={status === "transmitting"}
-            className="group relative w-full h-12 md:h-14 bg-indigo-600 text-white font-black text-[10px] md:text-xs uppercase tracking-[0.3em] overflow-hidden rounded transition-all active:scale-95 disabled:opacity-50"
+            className="group relative w-full h-12 md:h-14 bg-indigo-600 text-white font-black text-[10px] md:text-xs uppercase tracking-[0.3em] overflow-hidden rounded active:scale-95 disabled:opacity-50"
           >
             <span className="relative z-10 flex items-center justify-center gap-3">
               {status === "transmitting" ? (

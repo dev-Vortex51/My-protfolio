@@ -37,13 +37,13 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
     <>
       {/* Backdrop */}
       <div
-        className="md:hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-40 animate-in fade-in duration-300"
+        className="md:hidden fixed inset-0 bg-black/20 dark:bg-black/40 z-40 animate-in fade-in"
         onClick={onClose}
       />
       {/* Menu */}
       <div
         ref={menuRef}
-        className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 rounded-t-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 duration-300 max-h-[80vh] overflow-y-auto z-50"
+        className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 rounded-t-3xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-4 max-h-[80vh] overflow-y-auto z-50"
       >
         <div>
           <NavigationLinks mobile onClick={onClose} />

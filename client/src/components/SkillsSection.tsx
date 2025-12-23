@@ -35,7 +35,7 @@ const SkillsSection: React.FC<SkillsSectionProps> = ({ data }) => {
             <button
               key={cat}
               onClick={() => setActiveSkillCategory(cat)}
-              className={`px-3 py-1 border transition-all whitespace-nowrap ${
+              className={`px-3 py-1 border whitespace-nowrap ${
                 activeSkillCategory === cat
                   ? "border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-500/5"
                   : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-white"

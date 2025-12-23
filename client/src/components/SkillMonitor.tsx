@@ -30,7 +30,7 @@ const SkillMonitor: React.FC<SkillMonitorProps> = ({ skills }) => {
             <div className="flex items-center gap-2 md:gap-3">
               <div className="h-1 grow bg-zinc-200 dark:bg-zinc-900 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-indigo-500 transition-all duration-1000"
+                  className="h-full bg-indigo-500"
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>

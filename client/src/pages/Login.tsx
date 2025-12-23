@@ -56,7 +56,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
               placeholder="you@example.com"
               className={`w-full bg-slate-900 border ${
                 error ? "border-red-500" : "border-slate-800"
-              } rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-all`}
+              } rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500`}
               required
             />
           </div>
@@ -72,7 +72,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
               placeholder="Enter password"
               className={`w-full bg-slate-900 border ${
                 error ? "border-red-500" : "border-slate-800"
-              } rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-all`}
+              } rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500`}
               required
             />
             {error && <p className="text-xs text-red-500">{error}</p>}
@@ -81,7 +81,7 @@ const Login: React.FC<Props> = ({ onLogin }) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all shadow-lg shadow-indigo-500/20"
+            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl shadow-lg shadow-indigo-500/20"
           >
             {isSubmitting ? "Authorizing..." : "Authorize"}
           </button>

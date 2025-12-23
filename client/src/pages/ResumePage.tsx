@@ -33,7 +33,7 @@ const ResumePage: React.FC<Props> = ({ data }) => {
         </div>
         <button
           onClick={handlePrint}
-          className="print:hidden px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:hover:text-white transition-all shadow-lg"
+          className="print:hidden px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:hover:text-white shadow-lg"
         >
           <i className="fa-solid fa-print mr-2"></i> Output to PDF
         </button>
