@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 md:gap-4">
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-indigo-500 transition-all cursor-pointer focus:outline-none focus:ring-0"
+              className="w-8 h-8 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-indigo-500 cursor-pointer focus:outline-none focus:ring-0"
               aria-label="Toggle Theme"
             >
               <i
@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
             ) : (
               <Link
                 to="/login"
-                className="hidden md:block text-[10px] font-bold uppercase text-zinc-500 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-zinc-800 px-3 py-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all"
+                className="hidden md:block text-[10px] font-bold uppercase text-zinc-500 hover:text-zinc-900 dark:hover:text-white border border-zinc-200 dark:border-zinc-800 px-3 py-1 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800"
               >
                 Login
               </Link>

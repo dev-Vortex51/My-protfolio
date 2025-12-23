@@ -26,7 +26,7 @@ const SkillHeatmap: React.FC = () => {
                   : level === 3
                   ? "pixel-3"
                   : ""
-              } hover:scale-150 transition-transform`}
+              } hover:scale-150`}
               title={`Activity level: ${level}`}
             ></div>
           );

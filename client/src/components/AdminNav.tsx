@@ -41,7 +41,7 @@ const AdminNav: React.FC<NavProps> = ({
         <button
           key={item.id}
           onClick={() => setActiveTab(item.id)}
-          className={`pb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] transition-all flex items-center gap-2 whitespace-nowrap relative shrink-0 ${
+          className={`pb-4 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] flex items-center gap-2 whitespace-nowrap relative shrink-0 ${
             activeTab === item.id
               ? "text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400"
               : "text-zinc-400 dark:text-zinc-600 hover:text-zinc-900 dark:hover:text-white"

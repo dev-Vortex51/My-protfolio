@@ -21,13 +21,13 @@ const AdminHeader: React.FC<Props> = ({ onLogout }) => {
       <div className="flex gap-2 text-[8px] md:text-[10px] font-mono">
         <button
           onClick={() => navigate("/")}
-          className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 rounded uppercase hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700 rounded uppercase hover:bg-zinc-200 dark:hover:bg-zinc-700"
         >
           Portfolio
         </button>
         <button
           onClick={onLogout}
-          className="px-3 py-1 bg-red-500/10 text-red-600 dark:text-red-500 border border-red-500/20 rounded uppercase hover:bg-red-500/20 transition-colors"
+          className="px-3 py-1 bg-red-500/10 text-red-600 dark:text-red-500 border border-red-500/20 rounded uppercase hover:bg-red-500/20"
         >
           Logout
         </button>

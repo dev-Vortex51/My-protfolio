@@ -64,7 +64,7 @@ const ArsenalPanel: React.FC<Props> = ({
                 </select>
                 <button
                   onClick={() => onDeleteSkill(skill.id)}
-                  className="text-zinc-600 hover:text-red-500 transition-colors"
+                  className="text-zinc-600 hover:text-red-500"
                 >
                   <i className="fa-solid fa-trash-can"></i>
                 </button>
@@ -73,7 +73,7 @@ const ArsenalPanel: React.FC<Props> = ({
             <div className="flex items-center gap-4">
               <div className="grow h-1.5 bg-zinc-200 dark:bg-zinc-900 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-indigo-500 transition-all duration-500"
+                  className="h-full bg-indigo-500"
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>

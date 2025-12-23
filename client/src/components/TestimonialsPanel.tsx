@@ -161,13 +161,13 @@ const TestimonialsPanel: React.FC<Props> = ({
                 <div className="flex gap-4">
                   <button
                     onClick={() => setEditingTestimonial(testimonial)}
-                    className="text-zinc-400 hover:text-indigo-600 transition-colors"
+                    className="text-zinc-400 hover:text-indigo-600"
                   >
                     <i className="fa-solid fa-pen-to-square"></i>
                   </button>
                   <button
                     onClick={() => onDeleteTestimonial(testimonial.id)}
-                    className="text-zinc-400 hover:text-red-500 transition-colors"
+                    className="text-zinc-400 hover:text-red-500"
                   >
                     <i className="fa-solid fa-trash-can"></i>
                   </button>

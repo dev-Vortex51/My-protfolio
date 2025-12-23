@@ -15,7 +15,7 @@ const ProjectsPreview: React.FC<ProjectsPreviewProps> = ({ data }) => {
         </h2>
         <Link
           to="/projects"
-          className="text-indigo-600 dark:text-indigo-400 font-mono text-[10px] md:text-xs hover:text-zinc-900 dark:hover:text-white transition-colors whitespace-nowrap shrink-0"
+          className="text-indigo-600 dark:text-indigo-400 font-mono text-[10px] md:text-xs hover:text-zinc-900 dark:hover:text-white whitespace-nowrap shrink-0"
         >
           View All Archive →
         </Link>
@@ -31,7 +31,7 @@ const ProjectsPreview: React.FC<ProjectsPreviewProps> = ({ data }) => {
               <div className="flex justify-between items-start mb-4 sm:mb-6 gap-2 min-w-0">
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0 overflow-hidden">
                   <i className="fa-solid fa-folder text-indigo-500 shrink-0"></i>
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-zinc-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-zinc-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate">
                     {project.title}
                   </h3>
                 </div>

@@ -18,28 +18,28 @@ const NavigationLinks: React.FC<NavigationLinksProps> = ({
     <Link
       to="/"
       onClick={onClick}
-      className="hover:text-zinc-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-0"
+      className="hover:text-zinc-900 dark:hover:text-white focus:outline-none focus:ring-0"
     >
       Index
     </Link>
     <Link
       to="/projects"
       onClick={onClick}
-      className="hover:text-zinc-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-0"
+      className="hover:text-zinc-900 dark:hover:text-white focus:outline-none focus:ring-0"
     >
       Projects
     </Link>
     <Link
       to="/resume"
       onClick={onClick}
-      className="hover:text-zinc-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-0"
+      className="hover:text-zinc-900 dark:hover:text-white focus:outline-none focus:ring-0"
     >
       Resume
     </Link>
     <Link
       to="/contact"
       onClick={onClick}
-      className="hover:text-zinc-900 dark:hover:text-white transition-colors focus:outline-none focus:ring-0"
+      className="hover:text-zinc-900 dark:hover:text-white focus:outline-none focus:ring-0"
     >
       Contact
     </Link>

@@ -20,7 +20,7 @@ export default function Chronology({ data }: ChronologyProps) {
         </div>
         <Link
           to="/resume"
-          className="text-indigo-600 dark:text-indigo-400 font-mono text-[10px] md:text-xs hover:text-zinc-900 dark:hover:text-white transition-colors"
+          className="text-indigo-600 dark:text-indigo-400 font-mono text-[10px] md:text-xs hover:text-zinc-900 dark:hover:text-white"
         >
           Detailed Resume Mode →
         </Link>

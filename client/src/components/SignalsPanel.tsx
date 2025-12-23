@@ -33,7 +33,7 @@ const SignalsPanel: React.FC<Props> = ({
           {unreadCount > 0 && (
             <button
               onClick={onMarkAllRead}
-              className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase hover:text-indigo-500 transition-colors"
+              className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase hover:text-indigo-500"
             >
               Mark All as Read
             </button>
@@ -130,7 +130,7 @@ const SignalsPanel: React.FC<Props> = ({
             <div className="flex gap-4">
               <button
                 onClick={() => onDeleteMessage(selectedMessage.id)}
-                className="grow py-2 bg-red-600 text-white text-[10px] font-bold uppercase rounded hover:bg-red-500 transition-colors"
+                className="grow py-2 bg-red-600 text-white text-[10px] font-bold uppercase rounded hover:bg-red-500"
               >
                 Delete Message
               </button>

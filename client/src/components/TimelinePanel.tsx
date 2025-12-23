@@ -140,16 +140,16 @@ const TimelinePanel: React.FC<Props> = ({
                 {exp.description}
               </p>
             </div>
-            <div className="flex items-center gap-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity self-end md:self-auto">
+            <div className="flex items-center gap-4 md:opacity-0 md:group-hover:opacity-100 self-end md:self-auto">
               <button
                 onClick={() => setEditingExperience(exp)}
-                className="text-zinc-400 hover:text-indigo-600 transition-colors"
+                className="text-zinc-400 hover:text-indigo-600"
               >
                 <i className="fa-solid fa-pen-to-square"></i>
               </button>
               <button
                 onClick={() => onDeleteExperience(exp.id)}
-                className="text-zinc-400 hover:text-red-500 transition-colors"
+                className="text-zinc-400 hover:text-red-500"
               >
                 <i className="fa-solid fa-trash-can"></i>
               </button>

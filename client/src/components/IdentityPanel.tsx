@@ -210,7 +210,7 @@ const IdentityPanel: React.FC<Props> = ({
                 </select>
                 <button
                   onClick={() => onDeleteLanguage(lang.id)}
-                  className="text-zinc-500 hover:text-red-500 transition-colors"
+                  className="text-zinc-500 hover:text-red-500"
                 >
                   <i className="fa-solid fa-times text-xs"></i>
                 </button>

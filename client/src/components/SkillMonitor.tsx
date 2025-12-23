@@ -19,7 +19,7 @@ const SkillMonitor: React.FC<SkillMonitorProps> = ({ skills }) => {
         {skills.map((skill) => (
           <div
             key={skill.id}
-            className="grid grid-cols-[50px_1fr_80px_60px_60px] md:grid-cols-[60px_1fr_100px_80px_80px] items-center text-zinc-600 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-900/50 py-1 transition-colors group"
+            className="grid grid-cols-[50px_1fr_80px_60px_60px] md:grid-cols-[60px_1fr_100px_80px_80px] items-center text-zinc-600 dark:text-zinc-400 hover:bg-white dark:hover:bg-zinc-900/50 py-1 group"
           >
             <span className="text-zinc-400 dark:text-zinc-700">
               {skill.pid}

@@ -301,13 +301,13 @@ const RepositoriesPanel: React.FC<Props> = ({
             <div className="flex items-center justify-end gap-2">
               <button
                 onClick={() => setEditingProject(project)}
-                className="p-2 text-zinc-400 hover:text-indigo-600 transition-colors"
+                className="p-2 text-zinc-400 hover:text-indigo-600"
               >
                 <i className="fa-solid fa-pen-to-square"></i>
               </button>
               <button
                 onClick={() => onDeleteProject(project.id)}
-                className="p-2 text-zinc-400 hover:text-red-500 transition-colors"
+                className="p-2 text-zinc-400 hover:text-red-500"
               >
                 <i className="fa-solid fa-trash-can"></i>
               </button>
