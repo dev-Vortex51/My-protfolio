@@ -49,6 +49,12 @@ app.use("/api/projects", projectRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/portfolio", portfolioRouter);
 
+// Fallback aliases (support clients calling without /api prefix)
+app.use("/auth", authRouter);
+app.use("/projects", projectRouter);
+app.use("/contact", contactRouter);
+app.use("/portfolio", portfolioRouter);
+
 // Error handler
 app.use(errorHandler);
 
