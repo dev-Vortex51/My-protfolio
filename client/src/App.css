@@ -19,12 +19,45 @@
   --border: #18181b;
 }
 
+/* Smooth theme transitions - applied globally */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Preserve other transitions for interactive elements */
+button,
+input,
+textarea,
+select,
+a,
+[role="button"],
+[class*="hover:"],
+[class*="focus:"] {
+  transition-property: background-color, border-color, color, fill, stroke,
+    opacity, transform, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Disable transitions for motion-sensitive users */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+
 body {
   background-color: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .mono {
