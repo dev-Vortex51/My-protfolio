@@ -49,7 +49,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
             SYSTEM STATUS: OPERATIONAL // {data.location}
           </span>
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter text-zinc-900 dark:text-white leading-tight md:leading-none lg:leading-[0.9] break-words">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter text-zinc-900 dark:text-white leading-tight md:leading-none lg:leading-[0.9] wrap-break-word">
           {data.headline || "ENGINEERING FOR THE INFINITE SCALE"}
           <span className="text-indigo-500">.</span>
         </h1>
@@ -79,7 +79,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ data }) => {
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
           <div className="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
         </div>
-        <div className="grow whitespace-pre-wrap text-zinc-700 dark:text-zinc-300 overflow-y-auto scrollbar-hide break-words">
+        <div className="grow whitespace-pre-wrap text-zinc-700 dark:text-zinc-300 overflow-y-auto scrollbar-hide wrap-break-word">
           {terminalText}
           <span className="cursor-blink"></span>
         </div>

@@ -255,3 +255,14 @@ export async function markAllMessagesRead(): Promise<Message[]> {
 
   return res.json();
 }
+
+export async function deleteMessage(id: string): Promise<void> {
+  const res = await fetch(`${API_BASE_URL}/contact/${id}`, {
+    method: "DELETE",
+    headers: getAuthHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete message");
+  }
+}

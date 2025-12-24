@@ -10,7 +10,7 @@ const ProjectsPreview: React.FC<ProjectsPreviewProps> = ({ data }) => {
   return (
     <section id="projects" className="space-y-12 md:space-y-16 overflow-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end border-b border-zinc-200 dark:border-zinc-900 pb-8 gap-4">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white uppercase tracking-widest break-words">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white uppercase tracking-widest wrap-break-word">
           Featured Repositories
         </h2>
         <Link
@@ -45,7 +45,7 @@ const ProjectsPreview: React.FC<ProjectsPreviewProps> = ({ data }) => {
                   {project.status}
                 </span>
               </div>
-              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 break-words">
+              <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4 sm:mb-6 line-clamp-2 wrap-break-word">
                 {project.description}
               </p>
               <div className="flex items-center gap-3 sm:gap-4 md:gap-6 text-[10px] md:text-[11px] font-mono text-zinc-400 dark:text-zinc-500 border-t border-zinc-100 dark:border-zinc-900 pt-4 sm:pt-6 overflow-hidden">

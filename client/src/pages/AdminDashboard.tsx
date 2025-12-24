@@ -37,6 +37,7 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate, onLogout }) => {
     localData,
     isRefining,
     isSavingIdentity,
+    isSavingSkills,
     handleUpdateField,
     handleUpdateStat,
     handleUpdateSocialLink,
@@ -69,7 +70,7 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate, onLogout }) => {
       <AdminNav
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        unreadCount={data.messages.filter((m) => !m.read).length}
+        unreadCount={localData.messages.filter((m) => !m.read).length}
       />
 
       {activeTab === "overview" && <OverviewPanel stats={data.stats} />}
@@ -101,7 +102,7 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate, onLogout }) => {
             setEditingProject(null);
           }}
           onDeleteProject={handleDeleteProject}
-          onSuggestTags={(desc) => handleAiSuggestTags(desc)}
+          onSuggestTags={(desc, _id) => handleAiSuggestTags(desc)}
           setEditingProject={setEditingProject}
         />
       )}
@@ -112,6 +113,7 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate, onLogout }) => {
           onAddSkill={handleAddSkill}
           onUpdateSkill={handleUpdateSkill}
           onDeleteSkill={handleDeleteSkill}
+          isSaving={isSavingSkills}
         />
       )}
 
@@ -158,7 +160,12 @@ const AdminDashboard: React.FC<Props> = ({ data, onUpdate, onLogout }) => {
             const msg = localData.messages.find((m) => m.id === id);
             setSelectedMessage(msg || null);
           }}
-          onDeleteMessage={handleDeleteMessage}
+          onDeleteMessage={(id) => {
+            handleDeleteMessage(id);
+            if (selectedMessage?.id === id) {
+              setSelectedMessage(null);
+            }
+          }}
           onMarkAllRead={handleMarkAllRead}
         />
       )}

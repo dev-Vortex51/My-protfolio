@@ -33,7 +33,10 @@ const AppRoutes: React.FC<AppRoutesProps> = ({
         path="/projects"
         element={<ProjectsPage data={data} onUpdate={onUpdateData} />}
       />
-      <Route path="/contact" element={<ContactPage data={data} />} />
+      <Route
+        path="/contact"
+        element={<ContactPage data={data} onUpdate={onUpdateData} />}
+      />
       <Route path="/resume" element={<ResumePage data={data} />} />
       <Route
         path="/login"

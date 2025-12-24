@@ -114,11 +114,10 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
           <div
             key={project.id}
             className="group bg-zinc-50 dark:bg-[#0c0c0e] border border-zinc-200 dark:border-zinc-800 rounded p-6 flex flex-col h-full hover:border-indigo-500/50 reveal shadow-sm dark:shadow-none"
-            style={{ transitionDelay: `${idx * 0.05}s` }}
           >
-            <div className="space-y-6 flex-grow">
+            <div className="space-y-6 grow">
               <div className="flex justify-between items-start">
-                <div className="w-10 h-10 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded flex items-center justify-center text-indigo-500 group-hover:scale-110 transition-transform shadow-sm">
+                <div className="w-10 h-10 bg-transparent dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded flex items-center justify-center text-indigo-500 ">
                   <i className="fa-solid fa-cube text-sm"></i>
                 </div>
                 <div className="flex flex-col items-end gap-1 text-right">
@@ -159,7 +158,7 @@ const ProjectsPage: React.FC<Props> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex flex-col gap-4 flex-shrink-0">
+            <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-900 flex flex-col gap-4 shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex gap-4">
                   <button

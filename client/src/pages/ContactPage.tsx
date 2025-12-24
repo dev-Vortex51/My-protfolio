@@ -4,9 +4,10 @@ import { sendContactMessage } from "../services/api";
 
 interface Props {
   data: PortfolioData;
+  onUpdate: (data: PortfolioData) => void;
 }
 
-const ContactPage: React.FC<Props> = ({ data }) => {
+const ContactPage: React.FC<Props> = ({ data, onUpdate }) => {
   const [status, setStatus] = useState<"idle" | "transmitting" | "sent">(
     "idle"
   );
@@ -25,12 +26,29 @@ const ContactPage: React.FC<Props> = ({ data }) => {
     setError(null);
 
     try {
-      await sendContactMessage({
+      const response = await sendContactMessage({
         sender: formData.name,
         email: formData.email,
         subject: formData.subject,
         body: formData.message,
         priority: formData.priority,
+      });
+
+      // Add the new message to the state immediately
+      const newMessage = {
+        id: response.id || Date.now().toString(),
+        sender: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        body: formData.message,
+        priority: formData.priority,
+        timestamp: new Date().toISOString(),
+        read: false,
+      };
+
+      onUpdate({
+        ...data,
+        messages: [newMessage, ...data.messages],
       });
 
       setStatus("sent");

@@ -26,3 +26,9 @@ export async function markAllRead(_req: Request, res: Response) {
   const messages = await ContactMessage.find().sort({ timestamp: -1 });
   res.json(messages.map((m) => m.toJSON()));
 }
+
+export async function deleteMessage(req: Request, res: Response) {
+  const msg = await ContactMessage.findByIdAndDelete(req.params.id);
+  if (!msg) return res.status(404).json({ error: "Not found" });
+  res.status(204).send();
+}

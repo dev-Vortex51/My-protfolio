@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PortfolioData,
   Project,
@@ -6,6 +6,7 @@ import {
   Skill,
   Testimonial,
   Language,
+  Message,
 } from "../lib/types";
 import {
   createProject,
@@ -14,6 +15,7 @@ import {
   updatePortfolio,
   markMessageRead,
   markAllMessagesRead,
+  deleteMessage,
 } from "../services/api";
 import { refineText, suggestTags } from "../services/gemini";
 
@@ -24,6 +26,13 @@ export function useAdminEditor(
   const [localData, setLocalData] = useState<PortfolioData>(initialData);
   const [isRefining, setIsRefining] = useState<string | null>(null);
   const [isSavingIdentity, setIsSavingIdentity] = useState<boolean>(false);
+  // Keep local editor state in sync when parent data changes
+  useEffect(() => {
+    setLocalData(initialData);
+  }, [initialData]);
+  const [isSavingSkills, setIsSavingSkills] = useState<boolean>(false);
+  const [skillSaveTimeout, setSkillSaveTimeout] =
+    useState<NodeJS.Timeout | null>(null);
 
   const mergePortfolio = (
     current: PortfolioData,
@@ -179,8 +188,34 @@ export function useAdminEditor(
         .toString()
         .padStart(4, "0"),
     };
-    setLocalData({ ...localData, skills: [newSkill, ...localData.skills] });
+    const updatedSkills = [newSkill, ...localData.skills];
+    setLocalData({ ...localData, skills: updatedSkills });
+
+    // Auto-save after adding
+    saveSkillsDebounced(updatedSkills);
     return newSkill;
+  };
+
+  const saveSkillsDebounced = (skills: Skill[]) => {
+    // Clear existing timeout
+    if (skillSaveTimeout) {
+      clearTimeout(skillSaveTimeout);
+    }
+
+    // Set new timeout to save after 1 second of inactivity
+    const timeout = setTimeout(async () => {
+      setIsSavingSkills(true);
+      try {
+        await persistPortfolio({ skills });
+        onUpdate({ ...localData, skills });
+      } catch (error) {
+        console.error("Failed to save skills:", error);
+      } finally {
+        setIsSavingSkills(false);
+      }
+    }, 1000);
+
+    setSkillSaveTimeout(timeout);
   };
 
   const handleUpdateSkill = (id: string, updates: Partial<Skill>) => {
@@ -188,12 +223,26 @@ export function useAdminEditor(
       skill.id === id ? { ...skill, ...updates } : skill
     );
     setLocalData({ ...localData, skills: next });
+
+    // Auto-save after updating
+    saveSkillsDebounced(next);
   };
 
-  const handleDeleteSkill = (id: string) => {
+  const handleDeleteSkill = async (id: string) => {
     if (confirm("Are you sure you want to delete this skill?")) {
       const next = localData.skills.filter((skill) => skill.id !== id);
       setLocalData({ ...localData, skills: next });
+
+      // Save immediately on delete
+      setIsSavingSkills(true);
+      try {
+        await persistPortfolio({ skills: next });
+        onUpdate({ ...localData, skills: next });
+      } catch (error) {
+        console.error("Failed to delete skill:", error);
+      } finally {
+        setIsSavingSkills(false);
+      }
     }
   };
 
@@ -268,16 +317,32 @@ export function useAdminEditor(
     return msg;
   };
 
-  const handleDeleteMessage = (id: string) => {
-    const updated = localData.messages.filter((m) => m.id !== id);
-    setLocalData({ ...localData, messages: updated });
+  const handleDeleteMessage = async (id: string) => {
+    // Optimistic local update
+    let updated: Message[] = [];
+    setLocalData((prev) => {
+      updated = prev.messages.filter((m) => m.id !== id);
+      return { ...prev, messages: updated };
+    });
+
+    try {
+      await deleteMessage(id);
+      const next = { ...localData, messages: updated };
+      setLocalData(next);
+      onUpdate(next);
+    } catch (error) {
+      console.error("Failed to delete message", error);
+      alert("Failed to delete message");
+      // Re-fetch messages could be added here if needed
+    }
   };
 
   const handleMarkAllRead = async () => {
     try {
       const updated = await markAllMessagesRead();
-      setLocalData({ ...localData, messages: updated });
-      onUpdate({ ...localData, messages: updated });
+      const next = { ...localData, messages: updated };
+      setLocalData(next);
+      onUpdate(next);
     } catch {
       alert("Failed to mark all messages as read");
     }
@@ -304,6 +369,7 @@ export function useAdminEditor(
     setLocalData,
     isRefining,
     isSavingIdentity,
+    isSavingSkills,
     // Field updates
     handleUpdateField,
     handleUpdateStat,

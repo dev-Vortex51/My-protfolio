@@ -19,7 +19,7 @@ const SignalsPanel: React.FC<Props> = ({
   const unreadCount = messages.filter((m) => !m.read).length;
 
   return (
-    <div className="grid lg:grid-cols-[1fr_400px] gap-8 animate-in fade-in slide-in-from-bottom-4">
+    <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] items-start gap-6 lg:gap-8 animate-in fade-in slide-in-from-bottom-4 w-full min-w-0">
       <div className="space-y-4">
         <div className="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-900 pb-4">
           <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-widest">
@@ -39,7 +39,7 @@ const SignalsPanel: React.FC<Props> = ({
             </button>
           )}
         </div>
-        <div className="grid gap-3">
+        <div className="grid gap-3 lg:max-h-[70vh] lg:overflow-y-auto lg:pr-1 min-w-0">
           {messages.length === 0 ? (
             <div className="p-12 text-center text-zinc-600 font-mono text-xs border border-dashed border-zinc-200 dark:border-zinc-800 rounded">
               No messages yet
@@ -55,19 +55,19 @@ const SignalsPanel: React.FC<Props> = ({
                     : "border-zinc-200 dark:border-zinc-800"
                 } ${!msg.read ? "border-l-4 border-l-indigo-600" : ""}`}
               >
-                <div className="flex justify-between items-center mb-1">
+                <div className="flex justify-between items-center mb-1 gap-3">
                   <span
-                    className={`text-[10px] font-bold uppercase ${
+                    className={`text-[10px] font-bold uppercase break-words ${
                       !msg.read ? "text-indigo-400" : "text-zinc-400"
                     }`}
                   >
                     {msg.sender}
                   </span>
-                  <span className="text-[8px] font-mono text-zinc-500">
+                  <span className="text-[8px] font-mono text-zinc-500 whitespace-nowrap">
                     {new Date(msg.timestamp).toLocaleDateString()}
                   </span>
                 </div>
-                <h4 className="text-[10px] font-mono text-zinc-400 truncate">
+                <h4 className="text-[10px] font-mono text-zinc-400 break-words">
                   {msg.subject}
                 </h4>
               </div>
@@ -76,7 +76,7 @@ const SignalsPanel: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-6 lg:max-h-[70vh] lg:overflow-y-auto lg:pr-1 min-w-0">
         <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-widest border-b border-zinc-200 dark:border-zinc-900 pb-4">
           Message Details
         </h3>
@@ -90,7 +90,7 @@ const SignalsPanel: React.FC<Props> = ({
                 <p className="text-xs font-bold text-zinc-900 dark:text-white uppercase">
                   {selectedMessage.sender}
                 </p>
-                <p className="text-[9px] font-mono text-indigo-400">
+                <p className="text-[9px] font-mono text-indigo-400 break-words">
                   {selectedMessage.email}
                 </p>
               </div>
@@ -98,7 +98,7 @@ const SignalsPanel: React.FC<Props> = ({
                 <label className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest">
                   Subject
                 </label>
-                <p className="text-xs font-bold text-zinc-900 dark:text-white">
+                <p className="text-xs font-bold text-zinc-900 dark:text-white break-words">
                   {selectedMessage.subject}
                 </p>
               </div>
@@ -122,7 +122,7 @@ const SignalsPanel: React.FC<Props> = ({
                 <label className="text-[8px] font-mono text-zinc-500 uppercase tracking-widest block mb-2">
                   Message
                 </label>
-                <div className="text-[10px] text-zinc-700 dark:text-zinc-400 font-mono bg-white dark:bg-black/40 p-4 rounded leading-relaxed whitespace-pre-wrap">
+                <div className="text-[10px] text-zinc-700 dark:text-zinc-400 font-mono bg-white dark:bg-black/40 p-4 rounded leading-relaxed whitespace-pre-wrap break-words">
                   {selectedMessage.body}
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import { Project } from "@/lib/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   projects: Project[];
@@ -28,6 +28,22 @@ const RepositoriesPanel: React.FC<Props> = ({
   onSuggestTags,
   setEditingProject,
 }) => {
+  const [tagsInput, setTagsInput] = useState<string>("");
+
+  useEffect(() => {
+    if (editingProject) {
+      setTagsInput(editingProject.tags.join(", "));
+    } else {
+      setTagsInput("");
+    }
+  }, [editingProject]);
+
+  const parseTags = (value: string): string[] => {
+    return value
+      .split(/[\s,]+/)
+      .map((t) => t.trim())
+      .filter(Boolean);
+  };
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -176,18 +192,25 @@ const RepositoriesPanel: React.FC<Props> = ({
             </label>
             <input
               type="text"
-              value={editingProject.tags.join(", ")}
-              onChange={(e) =>
+              value={tagsInput}
+              onChange={(e) => setTagsInput(e.target.value)}
+              onBlur={() =>
                 setEditingProject({
                   ...editingProject,
-                  tags: e.target.value
-                    .split(",")
-                    .map((t) => t.trim())
-                    .filter(Boolean),
+                  tags: parseTags(tagsInput),
                 })
               }
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  setEditingProject({
+                    ...editingProject,
+                    tags: parseTags(tagsInput),
+                  });
+                }
+              }}
               className="w-full bg-white dark:bg-black border border-zinc-200 dark:border-zinc-800 rounded px-4 py-2 text-zinc-900 dark:text-white text-sm"
-              placeholder="React, TypeScript, Node.js (comma-separated)"
+              placeholder="react typescript node.js (comma or space separated)"
             />
           </div>
 

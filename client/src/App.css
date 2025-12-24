@@ -18,20 +18,19 @@
   --theme-transition: 100ms;
 }
 
-.dark {
+/* .dark {
   --bg: #09090b;
   --text: #fafafa;
   --border: #18181b;
-}
+} */
 
-/* Apply smooth transitions only to color-related properties when theme changes */
-* {
+/* Apply smooth transitions only to color-related properties when theme changes * {
   transition: background-color, border-color, color, fill, stroke;
   transition-duration: var(--theme-transition);
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
+} */
 
-/* Disable transitions for motion-sensitive users */
+/* Disable transitions for motion-sensitive users
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -39,7 +38,7 @@
     transition-duration: 0ms !important;
     animation-duration: 0ms !important;
   }
-}
+} */
 
 /* Mobile menu animations */
 @keyframes slideInFromBottom {
@@ -152,7 +151,9 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(10px);
-  transition: all 0.6s cubic-bezier(0.2, 0, 0, 1);
+  transition-property: opacity, transform;
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
 .reveal.active {
   opacity: 1;

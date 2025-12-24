@@ -7,13 +7,22 @@ const PortfolioFooter: React.FC = () => {
         Vortex<span className="text-indigo-600">.</span>
       </div>
       <div className="flex flex-wrap justify-center gap-6 md:gap-12 font-mono text-[9px] md:text-[10px] tracking-widest uppercase">
-        <a href="#" className="hover:text-zinc-900 dark:hover:text-white">
+        <a
+          href="https://github.com/dev_Vortex51"
+          className="hover:text-zinc-900 dark:hover:text-white"
+        >
           GitHub
         </a>
-        <a href="#" className="hover:text-zinc-900 dark:hover:text-white">
+        <a
+          href="https://linkedin.com/in/dev_Vortex51"
+          className="hover:text-zinc-900 dark:hover:text-white"
+        >
           LinkedIn
         </a>
-        <a href="#" className="hover:text-zinc-900 dark:hover:text-white">
+        <a
+          href="https://x.com/belloqu44401095"
+          className="hover:text-zinc-900 dark:hover:text-white"
+        >
           Twitter
         </a>
       </div>

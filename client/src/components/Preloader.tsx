@@ -45,12 +45,12 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[200] flex flex-col items-center justify-center bg-white dark:bg-[#09090b] ease-in-out ${
+      className={`fixed inset-0 z-200 flex flex-col items-center justify-center bg-white dark:bg-[#09090b] ease-in-out ${
         isExiting ? "opacity-0 scale-110 pointer-events-none" : "opacity-100"
       }`}
     >
       {/* Background Grid Accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent opacity-50"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent opacity-50"></div>
 
       <div className="relative w-full max-w-lg px-6 sm:px-8 space-y-8 sm:space-y-12">
         {/* Central Logo Animation */}
